@@ -1,2 +1,4 @@
 # ignore ALL files of __pycache__
 derp/__pycache__/
+usermanagementapp/__pycache__/
+usermanagementapp/migrations/__pycache__/
