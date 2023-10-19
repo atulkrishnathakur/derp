@@ -130,3 +130,31 @@ def list(request):
     return render(request,'countryapp/list.html')
 
 ```
+
+# Extends the base html file
+1. creata a base.html file in project template directory like *derp/templates/base.html
+
+```
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Title</title>
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
+
+```
+2. extends base.html into derp/templates/countryapp/list.html. Here "content" is the name of block
+
+```
+{% extends 'base.html' %}
+{% block content %}
+<h1>Home Page</h1>
+{% endblock content %}
+
+```
