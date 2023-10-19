@@ -91,3 +91,33 @@ urlpatterns = [
     path('country/',include('countryapp.urls'))
 ]
 ```
+
+# How to create template
+1. create a base template directory in porject directory like derp/templates/. This is the sibling of manage.py file.
+2. Now configrue the base templates directory
+3. open the setting.py file and write bellow code
+
+```
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+```
+
+4. create the templates directory in app directory like countryapp/templates/
+5. create the countryapp directory inside templates directory like countryapp/templates/countryapp/
+6. create the list.html file like countryapp/templates/countryapp/list.html
+
+
