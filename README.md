@@ -66,3 +66,28 @@ from .models import CustomUser
 
 admin.site.register(CustomUser)
 ```
+
+# Create URLs
+1. create an urls.py file in app directory
+2. add urls in this file
+
+```
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.list, name='countries'),
+    path('list', views.list, name='countrylist'),
+]
+```
+3. open the derp/derp/urls.py file and add the below code
+
+```
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('country/',include('countryapp.urls'))
+]
+```
