@@ -120,4 +120,13 @@ TEMPLATES = [
 5. create the countryapp directory inside templates directory like countryapp/templates/countryapp/
 6. create the list.html file like countryapp/templates/countryapp/list.html
 
+# Render a template file
 
+```
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def list(request):
+    return render(request,'countryapp/list.html')
+
+```
