@@ -39,3 +39,30 @@ INSTALLED_APPS = [
     ..........
 ]
 ```
+
+# create superuser
+```
+ATUL@DESKTOP-21EPCLH MINGW64 /i/mydjangofirst/derp (v1-user-management-app)
+$ python manage.py createsuperuser
+Username: abc     
+Email address: abc@yopmail.com
+Password: 
+Password (again):
+←[31;1mThis password is too common.
+This password is entirely numeric.
+←[0mBypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
+(venv) 
+```
+
+1. type in URL http://localhost:8000/admin
+
+# Register model to show in administration for super user 
+```
+from django.contrib import admin
+
+# Register your models here.
+from .models import CustomUser
+
+admin.site.register(CustomUser)
+```
