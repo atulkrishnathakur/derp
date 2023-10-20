@@ -170,3 +170,43 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 3. create the countryapp directory inside static directory like countryapp/static/countryapp/
 4. create the css directory inside countryapp directory like countryapp/static/countryapp/css/
 5. create the style.css directory inside css directory like countryapp/static/countryapp/css/style.css
+
+```
+{% extends 'base.html' %}
+{% load static %}
+{% block csscontent %} 
+<link rel="stylesheet" href="{% static 'countryapp/css/style.css' %}">
+{% endblock csscontent %}
+
+{% block contenttitle %} Home Page {% endblock contenttitle %}
+
+{% block content %}
+<h1>Home Page</h1>
+{% endblock content %}
+
+{% block footercontent %}
+{% include "productmanagement/include/footer.html" %}
+{% endblock footercontent %}
+
+{% block jscontent %} 
+<script src="{% static 'productmanagement/js/main.js' %}" ></script>
+{% endblock jscontent %}
+```
+
+```
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block contenttitle %} {% endblock contenttitle %}</title>
+        {% block csscontent %} {% endblock %}
+    </head>
+    <body>
+        {% block content %} {% endblock %}
+        {% block footercontent %} {% endblock %}
+		{% block jscontent %} {% endblock %}
+    </body>
+</html>
+
+```
