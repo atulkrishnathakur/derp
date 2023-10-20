@@ -1,4 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block csscontent %} 
+<link rel="stylesheet" href="{% static 'countryapp/css/style.css' %}">
+{% endblock csscontent %}
+
+{% block contenttitle %} Home Page {% endblock contenttitle %}
+
 {% block content %}
 <h1>Home Page</h1>
 {% endblock content %}
+
+{% block footercontent %}
+{% include "productmanagement/include/footer.html" %}
+{% endblock footercontent %}
+
+{% block jscontent %} 
+<script src="{% static 'productmanagement/js/main.js' %}" ></script>
+{% endblock jscontent %}

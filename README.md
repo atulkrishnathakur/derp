@@ -158,3 +158,15 @@ def list(request):
 {% endblock content %}
 
 ```
+# static for css,image and javaScript
+
+1. write the code in setting.py file
+
+```
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+```
+2. create the static directory in app directory like countryapp/static/
+3. create the countryapp directory inside static directory like countryapp/static/countryapp/
+4. create the css directory inside countryapp directory like countryapp/static/countryapp/css/
+5. create the style.css directory inside css directory like countryapp/static/countryapp/css/style.css
