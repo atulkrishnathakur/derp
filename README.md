@@ -5,11 +5,25 @@ $ pip install mysqlclient
 Requirement already satisfied: mysqlclient in i:\mydjangofirst\venv\lib\site-packages (2.1.1)
 ```
 
-# Requirements txt
+# how to generate requirements txt
 ```
 ATUL@DESKTOP-21EPCLH MINGW64 /i/mydjangofirst/derp (main)
 $ python -m pip freeze > requirements.txt
 (venv) 
+```
+
+Note: If you find mysqlclient related issue then run bellow command. See url for more details https://pypi.org/project/mysqlclient/
+
+```
+(venv) atul@atul-Lenovo-G570:~/mydjangofirst$ sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
+```
+
+
+# How to install packages from already generated requirements.txt file
+
+```
+(venv) atul@atul-Lenovo-G570:~/mydjangofirst/derp$ pip3 install -r requirements.txt
+
 ```
 
 # django-extensions
