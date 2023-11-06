@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csscontent %} 
+<link rel="stylesheet" href="{% static 'countryapp/css/style.css' %}">
+{% endblock csscontent %}
+
+{% block contenttitle %} Home Page {% endblock contenttitle %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2>Add Country</h2>
+    <form action={% url 'savecountry' %}  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="mb-3 mt-3">
+        <label for="countryapp">Country Name:</label>
+        <input type="text" class="form-control" id="countryname" placeholder="Enter Country Name" name="countryname">
+      </div>
+      <button type="reset" class="btn btn-danger">Reset</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+{% endblock content %}
+
+{% block footercontent %}
+{% include "countryapp/include/footer.html" %}
+{% endblock footercontent %}
+
+{% block jscontent %} 
+<script src="{% static 'countryapp/js/main.js' %}" ></script>
+{% endblock jscontent %}
