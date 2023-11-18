@@ -4,9 +4,20 @@ from countryapp.models import Country
 from django.template import loader
 from django.shortcuts import redirect
 from django.urls import reverse
+from . import apps
+
+app_name = apps.CountryappConfig.name
 
 def list(request):
-    return render(request,'countryapp/list.html')
+    try:
+        countries = Country.objects.all()
+        context = {
+            'appname':app_name,
+            'countries':countries
+        }
+        return render(request,'countryapp/list.html',context)
+    except Exception as e:
+        print(e)
 def create(request):
     try:
         if request.method == 'GET':
