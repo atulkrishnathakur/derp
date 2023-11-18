@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
 	    <div class="col-md-9"></div>
-	    <div class="col-md-3"><a href="{% url 'countrycreate' %}"><button type="button" class="btn btn-primary mt-2 mb-2">Create Country</button> </a></div>
+	    <div class="col-md-3"><a href="{% url 'countryapp:countrycreate' %}"><button type="button" class="btn btn-primary mt-2 mb-2">Create Country</button> </a></div>
 	</div>
 <table class="table table-bordered">
     <thead>
@@ -25,7 +25,7 @@
        <tr>
         <td>{{ forloop.counter }}</td>
         <td>{{country.country_name}}</td>
-        <td><a href="">Edit</a> <a href="">Delete</a></td>
+        <td><a href="{% url 'countryapp:countryedit' country.id %}">Edit</a> <a href="{% url 'countryapp:countrydelete' country.id %}">Delete</a></td>
        </tr> 
       {% endfor%}
     </tbody>

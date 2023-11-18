@@ -8,16 +8,16 @@
 
 {% block content %}
 <div class="container mt-3">
-    <h2>Add Country</h2>
-    <form action="{% url 'countryapp:countrycreate' %}"  method="post" enctype="multipart/form-data">
+    <h2>Edit Country</h2>
+    <form action="{% url 'countryapp:countryedit' country.id %}"  method="post" enctype="multipart/form-data">
         {% csrf_token %}
       <div class="mb-3 mt-3">
         <label for="countryapp">Country Name:</label>
-        <input type="text" {% if request.POST %} value="{{request.POST.countryname}}" {% else %} value="" {% endif %}class="form-control" id="countryname" placeholder="Enter Country Name" name="countryname"  >
+        <input type="text" {% if request.POST %} value="{{request.POST.countryname}}" {% else %} value="{{country.country_name}}" {% endif %} class="form-control" id="countryname" placeholder="Enter Country Name" name="countryname"  >
         <span class="error"> {% if errorlist %} {{errorlist.country_name_err}} {% endif %}</span>
       </div>
       <button type="reset" class="btn btn-danger">Reset</button>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">Update</button>
       <a href="{% url 'countryapp:countrylist' %}">Country List</a>
     </form>
   </div>
