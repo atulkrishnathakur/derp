@@ -2,18 +2,41 @@
 {% load static %}
 {% block csscontent %} 
 <link rel="stylesheet" href="{% static 'countryapp/css/style.css' %}">
-{% endblock csscontent %}
+{% endblock %}
 
-{% block contenttitle %} Home Page {% endblock contenttitle %}
+{% block contenttitle %} Country List {% endblock %}
 
 {% block content %}
-<h1>Home Page</h1>
-{% endblock content %}
+<div class="container">
+    <div class="row">
+	    <div class="col-md-9"></div>
+	    <div class="col-md-3"><a href="{% url 'countryapp:countrycreate' %}"><button type="button" class="btn btn-primary mt-2 mb-2">Create Country</button> </a></div>
+	</div>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+	    <th>S.No.</th>
+        <th>Country Name</th>
+		<th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for country in countries %}
+       <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{country.country_name}}</td>
+        <td><a href="{% url 'countryapp:countryedit' country.id %}">Edit</a> <a href="{% url 'countryapp:countrydelete' country.id %}">Delete</a></td>
+       </tr> 
+      {% endfor%}
+    </tbody>
+  </table>
+  </div>
+{% endblock %}
 
 {% block footercontent %}
-{% include "productmanagement/include/footer.html" %}
-{% endblock footercontent %}
+{% include "countryapp/include/footer.html" %}
+{% endblock %}
 
 {% block jscontent %} 
-<script src="{% static 'productmanagement/js/main.js' %}" ></script>
-{% endblock jscontent %}
+<script src="{% static 'countryapp/js/main.js' %}" ></script>
+{% endblock %}
