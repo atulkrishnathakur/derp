@@ -2,29 +2,30 @@
 {% load static %}
 {% block csscontent %} 
 <link rel="stylesheet" href="{% static 'countryapp/css/style.css' %}">
-{% endblock csscontent %}
+{% endblock %}
 
-{% block contenttitle %} Home Page {% endblock contenttitle %}
+{% block contenttitle %} Home Page {% endblock %}
 
 {% block content %}
 <div class="container mt-3">
     <h2>Add Country</h2>
-    <form action={% url 'savecountry' %}  method="post" enctype="multipart/form-data">
+    <form action={% url 'countrycreate' %}  method="post" enctype="multipart/form-data">
         {% csrf_token %}
       <div class="mb-3 mt-3">
         <label for="countryapp">Country Name:</label>
-        <input type="text" class="form-control" id="countryname" placeholder="Enter Country Name" name="countryname">
+        <input type="text" {% if request.POST.countryname %} value={{request.POST.countryname}} {% else %} value="" {% endif %}class="form-control" id="countryname" placeholder="Enter Country Name" name="countryname"  >
+        <span class="error"> {% if errorlist.country_name_err %} {{errorlist.country_name_err}} {% endif %}</span>
       </div>
       <button type="reset" class="btn btn-danger">Reset</button>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>
   </div>
-{% endblock content %}
+{% endblock %}
 
 {% block footercontent %}
 {% include "countryapp/include/footer.html" %}
-{% endblock footercontent %}
+{% endblock  %}
 
 {% block jscontent %} 
 <script src="{% static 'countryapp/js/main.js' %}" ></script>
-{% endblock jscontent %}
+{% endblock  %}
