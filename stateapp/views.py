@@ -22,14 +22,18 @@ def list(request):
 def create(request):
     try:
         if request.method == 'GET':
-            context = {}
+            countries = Country.objects.all()
+            context = {
+                'countries':countries
+            }
             return render(request,'stateapp/create.html',context)
         if request.method == 'POST':
             errorlist = {}
-            country_name = request.POST['countryname']
-            if country_name == "":
+            countryid = request.POST['countryid']
+            state_name = request.POST['statename']
+            if countryid == "":
                 errorlist['country_name_err'] = 'Country name is required'
-            elif country_name.isnumeric():
+            elif countryid.isnumeric():
                 errorlist['country_name_err'] = 'Enter correct country name'    
             if(len(errorlist) != 0):
                 context = {
@@ -37,8 +41,8 @@ def create(request):
                 }
                 return render(request,'stateapp/create.html',context)
             else:
-                countryobj = Country(country_name=country_name)
-                countryobj.save()
+                stateobj = State(country_id=countryid,state_name=state_name)
+                stateobj.save()
                 return HttpResponseRedirect(reverse("stateapp:list"))
     except Exception as e:
         print(e)

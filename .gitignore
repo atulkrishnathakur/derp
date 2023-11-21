@@ -4,3 +4,5 @@ usermanagementapp/__pycache__/
 usermanagementapp/migrations/__pycache__/
 countryapp/__pycache__/
 countryapp/migrations/__pycache__/
+stateapp/__pycache__/
+stateapp/migrations/__pycache__/
