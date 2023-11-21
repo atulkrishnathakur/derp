@@ -169,7 +169,7 @@ def list(request):
 {% extends 'base.html' %}
 {% block content %}
 <h1>Home Page</h1>
-{% endblock content %}
+{% endblock  %}
 
 ```
 # static for css,image and javaScript
@@ -190,21 +190,21 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 {% load static %}
 {% block csscontent %} 
 <link rel="stylesheet" href="{% static 'countryapp/css/style.css' %}">
-{% endblock csscontent %}
+{% endblock %}
 
-{% block contenttitle %} Home Page {% endblock contenttitle %}
+{% block contenttitle %} Home Page {% endblock %}
 
 {% block content %}
 <h1>Home Page</h1>
-{% endblock content %}
+{% endblock %}
 
 {% block footercontent %}
 {% include "productmanagement/include/footer.html" %}
-{% endblock footercontent %}
+{% endblock %}
 
 {% block jscontent %} 
 <script src="{% static 'productmanagement/js/main.js' %}" ></script>
-{% endblock jscontent %}
+{% endblock %}
 ```
 
 ```

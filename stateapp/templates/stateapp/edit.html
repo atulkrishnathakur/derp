@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csscontent %} 
+<link rel="stylesheet" href="{% static 'countryapp/css/style.css' %}">
+{% endblock %}
+
+{% block contenttitle %} Home Page {% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+    <h2>Edit Country</h2>
+    <form action="{% url 'countryapp:countryedit' country.id %}"  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="mb-3 mt-3">
+        <label for="countryapp">Country Name:</label>
+        <input type="text" {% if request.POST %} value="{{request.POST.countryname}}" {% else %} value="{{country.country_name}}" {% endif %} class="form-control" id="countryname" placeholder="Enter Country Name" name="countryname"  >
+        <span class="error"> {% if errorlist %} {{errorlist.country_name_err}} {% endif %}</span>
+      </div>
+      <button type="reset" class="btn btn-danger">Reset</button>
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="{% url 'countryapp:countrylist' %}">Country List</a>
+    </form>
+  </div>
+{% endblock %}
+
+{% block footercontent %}
+{% include "countryapp/include/footer.html" %}
+{% endblock  %}
+
+{% block jscontent %} 
+<script src="{% static 'countryapp/js/main.js' %}" ></script>
+{% endblock  %}
