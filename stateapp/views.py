@@ -11,7 +11,9 @@ app_name = apps.StateappConfig.name
 
 def list(request):
     try:
-        states = Country.objects.all()
+        states = State.objects.select_related('country').all()
+
+        #print(states.query) # use to print query
         context = {
             'appname':app_name,
             'states':states
@@ -28,15 +30,19 @@ def create(request):
             }
             return render(request,'stateapp/create.html',context)
         if request.method == 'POST':
+            countries = Country.objects.all()
             errorlist = {}
             countryid = request.POST['countryid']
             state_name = request.POST['statename']
             if countryid == "":
-                errorlist['country_name_err'] = 'Country name is required'
-            elif countryid.isnumeric():
-                errorlist['country_name_err'] = 'Enter correct country name'    
+                errorlist['country_name_err'] = 'Country name is required' 
+            if state_name == "":
+                errorlist['state_name_err'] = 'State name is required'
+            elif state_name.isnumeric():
+                errorlist['state_name_err'] = 'Enter correct state name'     
             if(len(errorlist) != 0):
                 context = {
+                    'countries':countries,
                     'errorlist':errorlist
                 }
                 return render(request,'stateapp/create.html',context)
@@ -53,42 +59,55 @@ def create(request):
 def deleterecored(request, id):
     try:
         if request.method == "GET":
-            country = Country.objects.get(id = id)
-            country.delete()
-            return redirect('countryapp:countrylist')
+            state = State.objects.get(id = id)
+            state.delete()
+            return redirect('stateapp:list')
         else:
-            return redirect('countryapp:countrylist')
+            return redirect('stateapp:list')
     except Exception as e:
         print(e)
 
 def edit(request, id):
     try:
         if request.method == 'GET':
-            country = Country.objects.get(id = id)
-            print(country.country_name)
+            state = State.objects.get(id = id)
+            countries = Country.objects.all().values()
             context = {
-                'country':country
+                'state':state,
+                'countries':countries
             }
-            return render(request,'countryapp/edit.html',context)
+            return render(request,'stateapp/edit.html',context)
         if request.method == 'POST':
+            state = State.objects.get(id = id)
+            countries = Country.objects.all().values()
             errorlist = {}
-            countryobj = Country.objects.get(id = id)
-            country_name = request.POST['countryname']
-            if country_name == "":
-                errorlist['country_name_err'] = 'Country name is required'
-            elif country_name.isnumeric():
-                errorlist['country_name_err'] = 'Enter correct country name'    
+            stateobj = State.objects.get(id = id)
+            state_name = request.POST['statename']
+            country_id = request.POST['countryid']
+            if country_id == "":
+                errorlist['country_name_err'] = "Country is required"
+            if state_name == "":
+                errorlist['state_name_err'] = 'State name is required'
+            elif state_name.isnumeric():
+                errorlist['state_name_err'] = 'Enter correct state name'    
             if(len(errorlist) != 0):
                 context = {
                     'errorlist':errorlist,
-                    'country':countryobj
+                    'state':state,
+                    'countries':countries
                 }
-                return render(request,'countryapp/edit.html',context)
+                return render(request,'stateapp/edit.html',context)
             else:
-                countryobj.country_name = country_name
-                countryobj.save()
-                return HttpResponseRedirect(reverse("countryapp:countrylist"))
+                stateobj.country_id = country_id
+                stateobj.state_name = state_name
+                stateobj.save()
+                return HttpResponseRedirect(reverse("stateapp:list"))
     except Exception as e:
         print(e)
-        context = {}
-        return render(request,'countryapp/edit.html',context)
+        state = State.objects.get(id = id) 
+        countries = Country.objects.all().values()
+        context = {
+            'state':state,
+            'countries':countries
+        }
+        return render(request,'stateapp/edit.html',context)

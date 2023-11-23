@@ -19,6 +19,7 @@
               <option value="{{country.id}}">{{country.country_name}}</option>
           {% endfor %}
         </select>
+        <span class="error"> {% if errorlist %} {{errorlist.country_name_err}} {% endif %}</span>
       </div>  
       <div class="mb-3 mt-3">
         <label for="statename">State Name:</label>

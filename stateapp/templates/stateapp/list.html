@@ -1,31 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block csscontent %} 
-<link rel="stylesheet" href="{% static 'countryapp/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'stateapp/css/style.css' %}">
 {% endblock %}
 
-{% block contenttitle %} Country List {% endblock %}
+{% block contenttitle %} State List {% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="row">
 	    <div class="col-md-9"></div>
-	    <div class="col-md-3"><a href="{% url 'countryapp:countrycreate' %}"><button type="button" class="btn btn-primary mt-2 mb-2">Create Country</button> </a></div>
+	    <div class="col-md-3"><a href="{% url 'stateapp:create' %}"><button type="button" class="btn btn-primary mt-2 mb-2">Create State</button> </a></div>
 	</div>
 <table class="table table-bordered">
     <thead>
       <tr>
 	    <th>S.No.</th>
-        <th>Country Name</th>
-		<th>Action</th>
+      <th>State Name</th>
+      <th>Country Name</th>
+		  <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      {% for country in countries %}
+      
+      {% for state in states %}
        <tr>
         <td>{{ forloop.counter }}</td>
-        <td>{{country.country_name}}</td>
-        <td><a href="{% url 'countryapp:countryedit' country.id %}">Edit</a> <a href="{% url 'countryapp:countrydelete' country.id %}">Delete</a></td>
+        <td>{{ state.state_name }}</td>
+        <td>{{ state.country.country_name}}</td>
+        <td><a href="{% url 'stateapp:edit' state.id %}">Edit</a> <a href="{% url 'stateapp:delete' state.id %}">Delete</a></td>
        </tr> 
       {% endfor%}
     </tbody>

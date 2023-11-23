@@ -1,32 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block csscontent %} 
-<link rel="stylesheet" href="{% static 'countryapp/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'stateapp/css/style.css' %}">
 {% endblock %}
 
 {% block contenttitle %} Home Page {% endblock %}
 
 {% block content %}
 <div class="container mt-3">
-    <h2>Edit Country</h2>
-    <form action="{% url 'countryapp:countryedit' country.id %}"  method="post" enctype="multipart/form-data">
+    <h2>Add State</h2>
+    <form action="{% url 'stateapp:edit' state.id %}"  method="post" enctype="multipart/form-data">
         {% csrf_token %}
-      <div class="mb-3 mt-3">
-        <label for="countryapp">Country Name:</label>
-        <input type="text" {% if request.POST %} value="{{request.POST.countryname}}" {% else %} value="{{country.country_name}}" {% endif %} class="form-control" id="countryname" placeholder="Enter Country Name" name="countryname"  >
+      <div class="form-group">
+        <label for="countryname">Country:</label>
+        <select class="form-control" name="countryid" id="countryname">
+          <option value="">-Select-</option>
+          {% for country in countries %}
+              <option value="{{country.id}}" {% if country.id == state.country_id %} selected {% endif %}>{{country.country_name}}</option>
+          {% endfor %}
+        </select>
         <span class="error"> {% if errorlist %} {{errorlist.country_name_err}} {% endif %}</span>
+      </div>  
+      <div class="mb-3 mt-3">
+        <label for="statename">State Name:</label>
+        <input type="text" {% if request.POST %} value="{{request.POST.statename}}" {% else %} value="{{state.state_name}}" {% endif %} class="form-control" id="statename" placeholder="Enter State Name" name="statename"  >
+        <span class="error"> {% if errorlist %} {{errorlist.state_name_err}} {% endif %}</span>
       </div>
       <button type="reset" class="btn btn-danger">Reset</button>
-      <button type="submit" class="btn btn-primary">Update</button>
-      <a href="{% url 'countryapp:countrylist' %}">Country List</a>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="{% url 'stateapp:list' %}">State List</a>
     </form>
   </div>
 {% endblock %}
 
 {% block footercontent %}
-{% include "countryapp/include/footer.html" %}
+{% include "stateapp/include/footer.html" %}
 {% endblock  %}
 
 {% block jscontent %} 
-<script src="{% static 'countryapp/js/main.js' %}" ></script>
+<script src="{% static 'stateapp/js/main.js' %}" ></script>
 {% endblock  %}
