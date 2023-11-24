@@ -7,7 +7,6 @@
 {% block contenttitle %} State List {% endblock %}
 
 {% block content %}
-<div class="container">
     <div class="row">
 	    <div class="col-md-9"></div>
 	    <div class="col-md-3"><a href="{% url 'stateapp:create' %}"><button type="button" class="btn btn-primary mt-2 mb-2">Create State</button> </a></div>
@@ -33,7 +32,6 @@
       {% endfor%}
     </tbody>
   </table>
-  </div>
 {% endblock %}
 
 

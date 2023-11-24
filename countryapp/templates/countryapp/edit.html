@@ -7,7 +7,6 @@
 {% block contenttitle %} Home Page {% endblock %}
 
 {% block content %}
-<div class="container mt-3">
     <h2>Edit Country</h2>
     <form action="{% url 'countryapp:countryedit' country.id %}"  method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -20,7 +19,6 @@
       <button type="submit" class="btn btn-primary">Update</button>
       <a href="{% url 'countryapp:countrylist' %}">Country List</a>
     </form>
-  </div>
 {% endblock %}
 
 {% block jscontent %} 

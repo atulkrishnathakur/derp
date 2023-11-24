@@ -7,7 +7,6 @@
 {% block contenttitle %} Country List {% endblock %}
 
 {% block content %}
-<div class="container">
     <div class="row">
 	    <div class="col-md-9"></div>
 	    <div class="col-md-3"><a href="{% url 'countryapp:countrycreate' %}"><button type="button" class="btn btn-primary mt-2 mb-2">Create Country</button> </a></div>
@@ -30,7 +29,6 @@
       {% endfor%}
     </tbody>
   </table>
-  </div>
 {% endblock %}
 
 

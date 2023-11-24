@@ -9,10 +9,20 @@
         {% block csscontent %} {% endblock %}
     </head>
     <body>
-        {% block content %} {% endblock %}
-        {% block footercontent %} {% endblock %}
-        <link rel="stylesheet" href="{% static 'js/jquery.min.js' %}">
-        <link rel="stylesheet" href="{% static 'js/bootstrap.bundle.min.js' %}">
-		{% block jscontent %} {% endblock %}
+        <div class="container-fluid">
+           <div class="p-1 bg-primary"><h1 class="text-center">DERP</h1></div> 
+           <div class="row">
+            <div class="col-md-2">
+                {% include "include/leftsidebar.html" %}
+            </div>
+            <div class="col-md-10">
+                {% block content %} {% endblock %}
+                {% block footercontent %} {% endblock %}
+                <link rel="stylesheet" href="{% static 'js/jquery.min.js' %}">
+                <link rel="stylesheet" href="{% static 'js/bootstrap.bundle.min.js' %}">
+                 {% block jscontent %} {% endblock %}
+            </div>
+           </div> 
+        </div>     
     </body>
 </html>

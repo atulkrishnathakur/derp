@@ -7,7 +7,6 @@
 {% block contenttitle %} Home Page {% endblock %}
 
 {% block content %}
-<div class="container mt-3">
     <h2>Add State</h2>
     <form action="{% url 'stateapp:edit' state.id %}"  method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -30,7 +29,6 @@
       <button type="submit" class="btn btn-primary">Save</button>
       <a href="{% url 'stateapp:list' %}">State List</a>
     </form>
-  </div>
 {% endblock %}
 
 
