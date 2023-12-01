@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'usermanagementapp',
     'countryapp',
-    'stateapp'
+    'stateapp',
+    'cityapp'
 ]
 
 MIDDLEWARE = [
