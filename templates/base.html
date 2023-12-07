@@ -18,7 +18,9 @@
             <div class="col-md-10">
                 {% block content %} {% endblock %}
                 {% block footercontent %} {% endblock %}
-                <link rel="stylesheet" href="{% static 'js/jquery.min.js' %}">
+               <!-- <link rel="stylesheet" href="{% static 'js/jquery.min.js' %}">-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
                 <link rel="stylesheet" href="{% static 'js/bootstrap.bundle.min.js' %}">
                  {% block jscontent %} {% endblock %}
             </div>

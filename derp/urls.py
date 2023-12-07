@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/clearcache/', include('clearcache.urls')),
     path('admin/', admin.site.urls),
     path('country/',include('countryapp.urls')),
-    path('state/',include('stateapp.urls'))
+    path('state/',include('stateapp.urls')),
+    path('city/',include('cityapp.urls'))
 ]

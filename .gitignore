@@ -6,3 +6,5 @@ countryapp/__pycache__/
 countryapp/migrations/__pycache__/
 stateapp/__pycache__/
 stateapp/migrations/__pycache__/
+cityapp/__pycache__/
+cityapp/migrations/__pycache__/

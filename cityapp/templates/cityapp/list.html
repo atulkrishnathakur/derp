@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csscontent %} 
+<link rel="stylesheet" href="{% static 'cityapp/css/style.css' %}">
+{% endblock %}
+
+{% block contenttitle %} State List {% endblock %}
+
+{% block content %}
+    <div class="row">
+	    <div class="col-md-9"></div>
+	    <div class="col-md-3"><a href="{% url 'cityapp:create' %}"><button type="button" class="btn btn-primary mt-2 mb-2">Create City</button> </a></div>
+	</div>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+	    <th>S.No.</th>
+      <th>City Name</th>
+      <th>State Name</th>
+      <th>Country Name</th>
+		  <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for city in cities %}
+       <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ city.city_name }}</td>
+        <td>{{ city.state.state_name }}</td>
+        <td>{{ state.country.country_name}}</td>
+        <td><a href="{% url 'cityapp:edit' city.id %}">Edit</a> <a href="{% url 'cityapp:delete' city.id %}">Delete</a></td>
+       </tr> 
+      {% endfor%}
+    </tbody>
+  </table>
+{% endblock %}
+
+
+{% block jscontent %} 
+<script src="{% static 'cityapp/js/main.js' %}" ></script>
+{% endblock %}
